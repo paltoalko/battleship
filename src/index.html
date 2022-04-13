@@ -5,22 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battleship</title>
+    <script src="https://kit.fontawesome.com/e76faa4312.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- First create background/main screen for the game -->
     <div class="main">
         <div class="game-header">
-            <h1 class="game-title">Battleship</h1>
+            <h1 class="game-title">BATTLESHIP</h1>
         </div>
 
         <div class="main-buttons">
-            <button class="restart-main-button">O</button>
-            <button class="help-main-button">?</button>
-            <button class="tag-main-button">@</button>
+            <button class="restart-main-button"><i class="fa-solid fa-arrow-rotate-right fa-lg"></i></button>
+            <button class="help-main-button"><i class="fa-solid fa-question fa-lg"></i></button>
+            <button class="tag-main-button"><i class="fa-solid fa-info fa-lg"></i></button>
         </div>
 
         <div class="turn-display">
-            <div id="turn">Player's turn</div>
+            <div id="turn">PLAYER'S TURN</div>
         </div>
 
         <div class="board-display">
@@ -31,7 +32,6 @@
                     <div class="gameboard" id="player-one-board"></div>
                 </div>
             </div>
-
             <div class="board">
                 <div class="hit-status">HIT</div>
                 <div class="board-middle">
@@ -46,6 +46,7 @@
 
     </div>
     <!-- Create Start screen as a popup modal and append by js to main -->
+
     <!-- Create End game screen as a popup modal append by js to main-->
 </body>
 </html>
