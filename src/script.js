@@ -1,5 +1,8 @@
 import './style.css';
-console.log("hello it works");
+import { createGrids } from './modules/grid.js';
 
+console.log("hell it works");
+
+createGrids();
 
 
