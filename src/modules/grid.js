@@ -13,7 +13,6 @@ function createGrids () {
 function appendGrid (element) {
     for (let c = 0; c < (10*10); c++) {
         let cell = document.createElement('div')
-        cell.innerText = (c + 1)
         cell.className = "grid-item"
         element.appendChild(cell);
     } 
