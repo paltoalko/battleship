@@ -41,15 +41,22 @@
 .main-buttons button {
     padding: 16px;
     background-color: transparent;
-    color: var(--accent-color);
+    color: var(--light-color);
     outline: none;
     border: none;
     transition: 0.4s;
 }
 
 .main-buttons button:hover {
-    color: var(--dark-color);
+    color: var(--accent-color);
     cursor: pointer;
+}
+
+.game-display {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .turn-display {
@@ -165,7 +172,7 @@
 
 .move-reminder {
     padding: 28px;
-    font-size: 20px;
+    font-size: 26px;
     color: var(--dark-color);
     font-weight: 300;
 }
@@ -174,7 +181,44 @@
 
 /* Start screen  */
 
+.start-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px;
+}
 
+.ships-display {
+    border: 1px solid white;
+    padding: 32px;
 
+}
+
+.ships-text {
+    color: var(--light-color);
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.game-options-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--light-color);
+
+}
+
+.random-ships, .reset-ships, .start-game {
+    transition: 0.4s;
+}
+
+.random-ships:hover, .reset-ships:hover {
+    color: var(--accent-color);
+    cursor: pointer;
+}
 
 
