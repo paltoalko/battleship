@@ -1,11 +1,13 @@
 // Create grids
 function createGrids () {
-    const playerOneGrid = document.getElementById("player-one-board")
-    const playerTwoGrid = document.getElementById("player-two-board")
+    // const playerOneGrid = document.getElementById("player-one-board")
+    // const playerTwoGrid = document.getElementById("player-two-board")
 
+    const playerOneSetBoard =document.getElementById("player-one-set-board")
     
-    appendGrid(playerOneGrid);
-    appendGrid(playerTwoGrid);
+    // appendGrid(playerOneGrid);
+    // appendGrid(playerTwoGrid);
+    appendGrid(playerOneSetBoard)
 
 
 }
