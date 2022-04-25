@@ -48,11 +48,11 @@ class Gameboard {
 
 
     receiveAttack (x,y) {
-        if(this.gameboardArray[x][y].shipName == undefined) {
+        if(this.gameboardArray[y][x].shipName == undefined) {
             this.missedAttacks.push({x: x, y: y})
         } else {
-            this.gameboardArray[x][y].shipName.hit(
-                this.gameboardArray[x][y].shipPosition
+            this.gameboardArray[y][x].shipName.hit(
+                this.gameboardArray[y][x].shipPosition
             )
         }
     }
