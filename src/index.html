@@ -21,10 +21,6 @@
         </div>
 
         <div class="game-display">
-
-            <div class="turn-display">
-                <div id="turn">PLAYER'S TURN</div>
-            </div>
     
             <div class="board-display">
                 <div class="board">
@@ -101,6 +97,54 @@
     
         </div>
     </div>
-    <!-- Create End game screen as a popup modal append by js to main-->
+
+    <div class="name-modal-overlay">
+        <div class="name-modal">
+            <div class="name-text">Write your name below!</div>
+            <div class="modal-forms">
+                <input id="nameinput" type="text" placeholder="Name" onkeydown="return /[a-z]/i.test(event.key)"
+                maxlength="15">
+                <button id="submitbtn" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="win-modal-overlay">
+        <div class="win-modal">
+            <div class="name-win-text">Marta Wins!</div>
+            <div class="play-again">Click on the screen to play again</div>
+        </div>
+    </div>
+
+    <div class="help-modal-overlay">
+        <div class="help-modal">
+            <div class="instructions">
+                <ol>
+                    <li>Ships can be placed in horizontal position only.</li>
+                    <li>Ships can be next to each other.</li>
+                    <li>There are 5 ships:
+                        <ul>
+                            <li>Carrier 5 blocks</li>
+                            <li>Battleship 4 blocks</li>
+                            <li>Cruiser 3 blocks</li>
+                            <li>Submarine 3 blocks</li>
+                            <li>Destroyer 2 blocks</li>
+                        </ul>
+                    </li>
+                    <li>Attack your opponent by clicking on computer's board.</li>
+                    <li>Green block with X mean that is hit!</li>
+                    <li>Red block with X mean that is a miss!</li>
+                </ol>  
+            </div>
+        </div>
+    </div>
+
+    <div class="info-modal-overlay">
+        <div class="info-modal">
+            <div class="info-text">Created by Marta Wesołowska</div>
+            <a href="https://github.com/paltoalko" target="_blank" id="tag">Visit my GitHub!</a>  
+        </div>
+    </div>
 </body>
 </html>
