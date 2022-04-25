@@ -27,13 +27,28 @@ const playerOneSetBoard =document.getElementById("player-one-set-board")
 const playerOneBoard = document.getElementById("player-one-board")
 const aiBoardDisplay = document.getElementById("ai-board")
 
+const modalOverlay = document.querySelector(".name-modal-overlay")
+const nameInput = document.querySelector("#nameinput")
+const submitBtn = document.querySelector("#submitbtn")
+
+const playerNameBoard = document.querySelector("#player-one-name")
+
+const modalWinOverlay = document.querySelector(".win-modal-overlay")
+const wintext = document.querySelector(".name-win-text")
+const playAgainBtn = document.querySelector(".play-again")
+
+const modalHelp = document.querySelector(".help-modal-overlay")
+const modalInfo = document.querySelector(".info-modal-overlay")
+
+
+
   // Gameboards
   const playerBoard = new Gameboard()
   const aiBoard = new Gameboard()
 
   // Players
   const playerone = new Player("Marta")
-  const ai = new Ai("Ai",playerone,playerBoard)  
+  const ai = new Ai("Computer",playerone,playerBoard)  
 
 
   // Player ships
@@ -179,7 +194,7 @@ function attackEvent(e) {
     ai.aiAttack()
     displayShips("player-one-board", playerBoard)
     if (playerBoard.allShipsSunk()) {
-        endGame(ai)
+        endGame("Computer")
     }
 }
 
@@ -196,7 +211,7 @@ function displayShips (boardHTML,board) {
                         selectedCell.classList.remove("occupied")
                         
                     } else if (cell.shipName.checkHit(cell.shipName.getShip()[cell.shipPosition]) == false) {
-                        if (boardHTML == "player-one-set-board" || boardHTML == "player-one-board" || boardHTML == "ai-board") {
+                        if (boardHTML == "player-one-set-board" || boardHTML == "player-one-board") {
                             let selectedCell = document.querySelector(`#${boardHTML} [data-x="${x}"][data-y="${y}"]`)
                             selectedCell.classList.add("occupied")
                                 
@@ -234,8 +249,15 @@ function randomFleetPlacementAi() {
 }
 
 function endGame(name) {
-    console.log(`${name} wins!`);
+    modalWinOverlay.style.display = "flex"
     
+    wintext.textContent = `${name.charAt(0).toUpperCase() + name.slice(1)} wins!`
+    modalWinOverlay.addEventListener("click", (e) => {
+        let clickInside = document.querySelector(".win-modal").contains(e.target)
+        if (!clickInside) {
+            resetGame()
+        }
+    })
 }
 
 function startGame() {
@@ -256,7 +278,7 @@ function resetFleet() {
     displayShips("player-one-set-board",playerBoard)
 }
 
-function fixReset () {
+function resetGame () {
     window.location.reload()
 }
 
@@ -270,7 +292,7 @@ function showStartButton () {
 }
 
 function showRestartButton() {
-    restartBtn.style.display = "flex"
+    restartBtn.style.display = "inline"
 }
 
 function playRound () {
@@ -287,7 +309,6 @@ function hideStartScreen () {
 function showGameboards() {
     appendGrid(playerOneBoard)
     displayShips("player-one-board",playerBoard)
-
     appendGrid(aiBoardDisplay)
 }
 
@@ -300,14 +321,73 @@ function domElements () {
 
     resetBtn.addEventListener("click", () => {
         resetFleet()
-        fixReset()
+        resetGame()
     })
 
-    
-    
+    restartBtn.addEventListener('click',() => {
+        resetGame()
+    })
 
+    infoBtn.addEventListener("click", () => {
+        modalInfo.style.display = "flex"
+        
+    })
 
+    modalInfo.addEventListener("click", (e) => {
+        let clickInside = document.querySelector(".info-modal").contains(e.target)
+        if (!clickInside) {
+            modalInfo.style.display ="none"
+        }
+        
+    })
 
+    helpBtn.addEventListener("click", () => {
+        modalHelp.style.display = "flex"
+        
+        
+    })
+    modalHelp.addEventListener("click", (e) => {
+        let clickInside = document.querySelector(".help-modal").contains(e.target)
+        if (!clickInside) {
+            modalHelp.style.display ="none"
+        }
+        
+    })
+
+    submitBtn.addEventListener("click", () => {
+        setPlayerName(nameInput.value)
+        modalOverlay.style.display ="none"
+    })
+
+    modalOverlay.addEventListener("click", (e) => {
+        let clickInside = document.querySelector(".name-modal").contains(e.target)
+        if (!clickInside) {
+            setPlayerName(nameInput.value)
+            modalOverlay.style.display ="none"
+        }
+        
+    })
+
+    playAgainBtn.addEventListener("click",() => {
+        resetGame()
+    })
+
+}
+
+function setPlayerName(value) {
+    if (value == "" || undefined || null) {
+        let name = "Player"
+        playerone.setName(name)
+        let nameUpper = name.toUpperCase()
+        playerNameBoard.textContent = `${nameUpper}`
+        
+    } else {
+        let name = value
+        playerone.setName(name)
+        let nameUpper = name.toUpperCase()
+        playerNameBoard.textContent = `${nameUpper}`
+        
+    }
 }
 
 
