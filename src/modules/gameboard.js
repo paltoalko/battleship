@@ -21,6 +21,7 @@ class Gameboard {
         return this.gameboardArray
     }
 
+
     validateShipPlacement(length,x,y) {
         if (x > 10 || x < 0 || y > 10 || y < 0 || y + length > 10) {
             return false
@@ -28,11 +29,13 @@ class Gameboard {
             for (let i = y; i < y + length; i++) {
               if (this.gameboardArray[x][i].shipName != undefined) {
                 return false;
-              } 
+                }
             }
-            return true;
+        return true;
       }
     }
+
+
 
     placeShip (ship, x ,y) {
         if (this.validateShipPlacement(ship.getShipLength(), x, y)) {
@@ -42,6 +45,7 @@ class Gameboard {
             }
         }
     }
+
 
     receiveAttack (x,y) {
         if(this.gameboardArray[x][y].shipName == undefined) {
@@ -58,18 +62,21 @@ class Gameboard {
     }
 
     allShipsSunk() {
-        let sunk = false
+        let sunk = true
         this.gameboardArray.forEach((item) => {
             item.forEach((element) => {
                 if(element.shipName) {
                     if (element.shipName.checkSunk() == false) {
-                        sunk = true;
+                        sunk = false;
                     }
                 }
             })
         })
         return sunk
     }
+
+  
+    
     
 }
 
