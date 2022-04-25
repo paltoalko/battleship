@@ -20,7 +20,7 @@
             <button class="tag-main-button"><i class="fa-solid fa-info fa-lg"></i></button>
         </div>
 
-        <!-- <div class="game-display">
+        <div class="game-display">
 
             <div class="turn-display">
                 <div id="turn">PLAYER'S TURN</div>
@@ -38,14 +38,14 @@
                     <div class="hit-status">HIT</div>
                     <div class="board-middle">
                         <div class="player-name" id="player-two-name">COMPUTER</div>
-                        <div class="gameboard" id="player-two-board"></div>
+                        <div class="gameboard" id="ai-board"></div>
                     </div>
                 </div>
             </div>
     
             <div class="move-reminder">Attack your opponent by clicking on opponents board!</div>
 
-        </div>     -->
+        </div>    
 
 
         <!-- Create Start screen as a popup modal and append by js to main -->
@@ -56,14 +56,47 @@
                 </div>
                 <div class="ships-display">
                     <div class="ships-text">PLACE YOUR SHIPS ON THE BOARD <br>BY DRAGGING THEM</div>
-                    <div class="ships"></div>
+                    <div class="ships">
+                        <div class="ship" id="battleship" draggable="true">
+                            <div class="shipblock"></div>
+                            <div class="shipblock"></div>
+                            <div class="shipblock"></div>
+                            <div class="shipblock"></div>
+                        </div>
+
+                        <div class="ship" id="carrier" draggable="true">
+                            <div class="shipblock"></div>
+                            <div class="shipblock"></div>
+                            <div class="shipblock"></div>
+                            <div class="shipblock"></div>
+                            <div class="shipblock"></div>
+                        </div>
+
+                        <div class="ship" id="submarine" draggable="true">
+                            <div class="shipblock"></div>
+                            <div class="shipblock"></div>
+                            <div class="shipblock"></div>
+                        </div>
+
+                        <div class="ship" id="destroyer" draggable="true">
+                            <div class="shipblock"></div>
+                            <div class="shipblock"></div>
+                            <div class="shipblock"></div>
+                        </div>
+
+                        <div class="ship" id="patrolboat" draggable="true">
+                            <div class="shipblock"></div>
+                            <div class="shipblock"></div>
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
 
             <div class="game-options-display">
                 <div class="random-ships">RANDOM</div>
                 <div class="reset-ships">RESET</div>
-                <div class="start-game">START</div>
+                
             </div>
     
         </div>
