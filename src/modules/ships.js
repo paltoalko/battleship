@@ -20,7 +20,7 @@ class Ship {
     }
 
     getShipLength() {
-        return this.ship.length
+        return this.ship.length;
     }
 
     hit(index) {
