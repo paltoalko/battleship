@@ -31,7 +31,8 @@ class Player {
 
     playerAttack(x,y,enemy,enemyBoard) {
         if (this.checkTurn() == true) {
-            enemyBoard.receiveAttack(x,y);
+            enemyBoard.receiveAttack(y,x);
+            
             this.changeTurn(enemy)
         }
     }
