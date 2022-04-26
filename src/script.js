@@ -4,7 +4,6 @@ const Player = require('./modules/player.js')
 const Ai = require('./modules/ai.js')
 const Gameboard = require('./modules/gameboard.js')
 
-console.log("hell it works");
 
 //Dom elements
 const battleshipElement = document.querySelector("#battleship");
@@ -39,6 +38,9 @@ const playAgainBtn = document.querySelector(".play-again")
 
 const modalHelp = document.querySelector(".help-modal-overlay")
 const modalInfo = document.querySelector(".info-modal-overlay")
+
+const hitStatusPlayer = document.querySelector("#hit-status-player") 
+const hitStatusAi = document.querySelector("#hit-status-ai") 
 
 
 
@@ -98,14 +100,13 @@ function appendGrid (element) {
           } else if (element.id == "ai-board") {
               cell.addEventListener("click", (e) => {
                   attackEvent(e.target)
+                  hitEvent(e.target)
               })
-          }
+          } 
           element.appendChild(cell);
     }} 
     
 }
-
-
 
 function randomShipPlacement(ship,board) {
     while(true) {
@@ -137,7 +138,7 @@ function dropShip (e) {
     let y = parseInt(e.target.getAttribute("data-y"));
     let occupied = e.target.className
     let ship;
-    console.log(e)
+    
     
 
     if (data == "battleship") {
@@ -210,6 +211,7 @@ function displayShips (boardHTML,board) {
                         selectedCell.classList.add("hit")
                         selectedCell.classList.remove("occupied")
                         
+                        
                     } else if (cell.shipName.checkHit(cell.shipName.getShip()[cell.shipPosition]) == false) {
                         if (boardHTML == "player-one-set-board" || boardHTML == "player-one-board") {
                             let selectedCell = document.querySelector(`#${boardHTML} [data-x="${x}"][data-y="${y}"]`)
@@ -228,6 +230,12 @@ function displayShips (boardHTML,board) {
             
             attackedCell.textContent = "X"
         })
+}
+
+function highlightHit(object) {
+    setTimeout(function () {
+        object.classList.remove("active")
+    },1000)
 }
 
 
@@ -390,8 +398,40 @@ function setPlayerName(value) {
     }
 }
 
+function hitEvent(e) {
+    let missedAttackArrLast;
+    let attackArrLast;
+    if (e.className == "grid-item hit") {
+        
+        hitStatusAi.classList.add("active")
+        highlightHit(hitStatusAi)
+        
+    }
+    
+    if (ai.getAttackArr().length > 1) {
+        attackArrLast = ai.getAttackArr().slice(-1)
+    } else {
+        attackArrLast = ai.getAttackArr()
+    }
+    
 
+    
+    if(playerBoard.missedAttackArr().length > 1){
+        missedAttackArrLast = playerBoard.missedAttackArr().slice(-1)
+    }  else {
+        missedAttackArrLast = playerBoard.missedAttackArr()
+    }
 
+    let arr1 = JSON.stringify(missedAttackArrLast[0])
+    let arr2 = JSON.stringify(attackArrLast[0])
+    
+    
+    if (arr1 != arr2) {
+        hitStatusPlayer.classList.add("active")
+        highlightHit(hitStatusPlayer)  
+    } 
+    
+}
 
 
 startGame();
