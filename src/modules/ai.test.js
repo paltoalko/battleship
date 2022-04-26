@@ -1,29 +1,25 @@
-const Player = require('./player.js')
-const Gameboard = require('./gameboard.js')
-const Ship = require('./ships.js')
-const Ai = require('./ai.js')
+/* eslint-disable no-undef */
+/* eslint-disable import/extensions */
+const Player = require('./player.js');
+const Gameboard = require('./gameboard.js');
+const Ai = require('./ai.js');
 
+describe('Ai', () => {
+  test('Ai has a name and doesnt start', () => {
+    const computer = new Ai('Computer');
 
+    expect(computer.getName()).toBe('Computer');
+    expect(computer.checkTurn()).toBe(false);
+  });
 
-describe("Ai", () => {
-    test("Ai has a name and doesnt start", () => {
-        const computer = new Ai("Computer")
+  test("Ai attacks when it's turn", () => {
+    const player1 = new Player('Zuzia');
+    const enemyBoard = new Gameboard();
+    const computer = new Ai('computer', player1, enemyBoard);
 
-        expect(computer.getName()).toBe('Computer')
-        expect(computer.checkTurn()).toBe(false)
-    })
+    player1.changeTurn(computer);
+    computer.aiAttack();
 
-    test("Ai attacks when it's turn", () => {
-        const player1 = new Player("Zuzia")
-        const enemyBoard = new Gameboard()
-        const computer = new Ai("computer",player1,enemyBoard)
-        
-        player1.changeTurn(computer)
-        computer.aiAttack()
-
-        expect(enemyBoard.missedAttackArr().length).toBe(1)
-
-
-    })
-
-})
+    expect(enemyBoard.missedAttackArr().length).toBe(1);
+  });
+});
